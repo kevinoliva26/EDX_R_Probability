@@ -273,6 +273,7 @@ jamaica <- permutations(3,3) %>% nrow()
 #What is the probability that all 3 medals are won by Jamaica?
 jamaica/medals
 #Run a Monte Carlo simulation on this vector representing the countries of the 8 runners in this race:
+set.seed(1)
 runners <- c("Jamaica", "Jamaica", "Jamaica", "USA", "Ecuador", "Netherlands", "France", "South Africa")
 B <- 10000
 all_jamaica <- replicate(B, {
