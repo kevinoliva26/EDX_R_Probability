@@ -61,4 +61,41 @@ data.frame (S = S) %>%    # make data frame of S for histogram
     geom_line(data = normal_density, mapping = aes(s, f), color = "blue")
 ```
 
+##Distributions versus Probability Distributions
 
+A random variable X has a probability distribution function F(a) that defines Pr(X≤a) over all values of a.
+Any list of numbers has a distribution. The probability distribution function of a random variable is defined mathematically and does not depend on a list of numbers.
+The results of a Monte Carlo simulation with a large enough number of observations will approximate the probability distribution of X.
+If a random variable is defined as draws from an urn:
+The probability distribution function of the random variable is defined as the distribution of the list of values in the urn.
+The expected value of the random variable is the average of values in the urn.
+The standard error of one draw of the random variable is the standard deviation of the values of the urn.
+
+##Notation for Random Variables
+
+Capital letters denote random variables (X) and lowercase letters denote observed values (x).
+
+##Central Limit Theorem
+
+The Central Limit Theorem (CLT) says that the distribution of the sum of a random variable is approximated by a normal distribution.
+
+The expected value of a random variable, E[X]=μ, is the average of the values in the urn. This represents the expectation of one draw. 
+
+The standard error of one draw of a random variable is the standard deviation of the values in the urn.
+
+The expected value of the sum of draws is the number of draws times the expected value of the random variable. 
+
+The standard error of the sum of independent draws of a random variable is the square root of the number of draws times the standard deviation of the urn. 
+
+###Equations
+
+Expected value of a random variable: 
+*ap+b(1−p)*
+Expected value of the sum of n draws of a random variable: 
+*n×(ap+b(1−p))*
+Standard deviation of an urn with two values: 
+*∣b–a∣p(1−p)−−−−−−√*
+Standard error of the sum of n draws of a random variable:
+*n−−√ ×∣b–a∣p(1−p)−−−−−−−√*
+
+##
