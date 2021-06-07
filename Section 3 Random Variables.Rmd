@@ -98,4 +98,100 @@ Standard deviation of an urn with two values:
 Standard error of the sum of n draws of a random variable:
 *n−−√ ×∣b–a∣p(1−p)−−−−−−−√*
 
-##
+##Averages and Proportions
+
+Random variable times a constant
+The expected value of a random variable multiplied by a constant is that constant times its original expected value:
+
+E[aX]=aμ
+The standard error of a random variable multiplied by a constant is that constant times its original standard error:
+
+SE[aX]=aσ
+Average of multiple draws of a random variable
+The expected value of the average of multiple draws from an urn is the expected value of the urn (μ).
+
+The standard deviation of the average of multiple draws from an urn is the standard deviation of the urn divided by the square root of the number of draws (σ/n−−√).
+
+The sum of multiple draws of a random variable
+The expected value of the sum of n draws of a random variable is n times its original expected value:
+
+E[nX]=nμ
+The standard error of the sum of n draws of random variable is n−−√ times its original standard error:
+
+SE[nX]=n−−√σ
+
+The sum of multiple different random variables
+The expected value of the sum of different random variables is the sum of the individual expected values for each random variable:
+
+E[X1+X2+⋯+Xn]=μ1+μ2+⋯+μn
+The standard error of the sum of different random variables is the square root of the sum of squares of the individual standard errors:
+
+SE[X1+X2+⋯+Xn]=σ21+σ22+⋯+σ2n−−−−−−−−−−−−−−−√
+Transformation of random variables
+If X is a normally distributed random variable and a and b are non-random constants, then aX+b is also a normally distributed random variable.
+
+##Law of Large Numbers
+
+The law of large numbers states that as n increases, the standard error of the average of a random variable decreases. In other words, when n is large, the average of the draws converges to the average of the urn.
+The law of large numbers is also known as the law of averages.
+The law of averages only applies when n is very large and events are independent. It is often misused to make predictions about an event being "due" because it has happened less frequently than expected in a small sample size.
+
+##How Large is Large in CLT?
+
+The sample size required for the Central Limit Theorem and Law of Large Numbers to apply differs based on the probability of success.
+If the probability of success is high, then relatively few observations are needed.
+As the probability of success decreases, more observations are needed.
+If the probability of success is extremely low, such as winning a lottery, then the Central Limit Theorem may not apply even with extremely large sample sizes. The normal distribution is not a good approximation in these cases, and other distributions such as the Poisson distribution (not discussed in these courses) may be more appropriate.
+
+##How Large is Large in CLT?
+
+The sample size required for the Central Limit Theorem and Law of Large Numbers to apply differs based on the probability of success.
+If the probability of success is high, then relatively few observations are needed.
+As the probability of success decreases, more observations are needed.
+If the probability of success is extremely low, such as winning a lottery, then the Central Limit Theorem may not apply even with extremely large sample sizes. The normal distribution is not a good approximation in these cases, and other distributions such as the Poisson distribution (not discussed in these courses) may be more appropriate.
+
+##Assesent Part 3
+
+This is a 6-part question asking you to determine some probabilities of what happens when a student guessed for all of their answers on the SAT. Use the information below to inform your answers for the following questions.
+
+An old version of the SAT college entrance exam had a -0.25 point penalty for every incorrect answer and awarded 1 point for a correct answer. The quantitative test consisted of 44 multiple-choice questions each with 5 answer choices. Suppose a student chooses answers by guessing for all questions on the test.
+
+What is the probability of guessing correctly for one question?
+```{r}
+p <- 1/5
+p
+```
+
+What is the expected value of points for guessing on one question?
+```{r}
+a <- 1
+b <- -0.25
+mu <- a*p + b*(1-p)
+mu
+```
+
+What is the expected score of guessing on all 44 questions?
+```{r}
+44*(a*p+b*(1−p))
+```
+
+What is the standard error of guessing on all 44 questions?
+```{r}
+sigma <- abs(b-a)*sqrt(p*(1-p))*sqrt(44)
+sigma
+```
+
+Use the Central Limit Theorem to determine the probability that a guessing student scores 8 points or higher on the test.
+```{r}
+
+```
+
+
+Expected value of a random variable: 
+*ap+b(1−p)*
+Expected value of the sum of n draws of a random variable: 
+*n×*
+Standard deviation of an urn with two values: 
+*∣b–a∣p(1−p)−−−−−−√*
+Standard error of the sum of n draws of a random variable:
+*n−−√ ×∣b–a∣p(1−p)−−−−−−−√*
