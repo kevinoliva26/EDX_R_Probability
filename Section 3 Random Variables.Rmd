@@ -150,7 +150,7 @@ If the probability of success is high, then relatively few observations are need
 As the probability of success decreases, more observations are needed.
 If the probability of success is extremely low, such as winning a lottery, then the Central Limit Theorem may not apply even with extremely large sample sizes. The normal distribution is not a good approximation in these cases, and other distributions such as the Poisson distribution (not discussed in these courses) may be more appropriate.
 
-##Assesent Part 3
+##Assesent Questions 1 and 2
 
 This is a 6-part question asking you to determine some probabilities of what happens when a student guessed for all of their answers on the SAT. Use the information below to inform your answers for the following questions.
 
@@ -183,15 +183,55 @@ sigma
 
 Use the Central Limit Theorem to determine the probability that a guessing student scores 8 points or higher on the test.
 ```{r}
-
+1-pnorm(8,mu,sigma)
 ```
 
+Set the seed to 21, then run a Monte Carlo simulation of 10,000 students guessing on the test.
+(IMPORTANT! If you use R 3.6 or later, you will need to use the command set.seed(x, sample.kind = "Rounding") instead of set.seed(x). Your R version will be printed at the top of the Console window when you start RStudio.)
+What is the probability that a guessing student scores 8 points or higher?
+```{r}
+set.seed(21, sample.kind = "Rounding")
+B <- 10000
+p_8 <- replicate(B,{
+    x <- sample(c(1,-0.25),44,replace = TRUE,prob = c(0.2,0.8))
+    sum(x)
+})
+mean(p_8>=8)
+```
 
-Expected value of a random variable: 
-*ap+b(1−p)*
-Expected value of the sum of n draws of a random variable: 
-*n×*
-Standard deviation of an urn with two values: 
-*∣b–a∣p(1−p)−−−−−−√*
-Standard error of the sum of n draws of a random variable:
-*n−−√ ×∣b–a∣p(1−p)−−−−−−−√*
+Suppose that the number of multiple choice options is 4 and that there is no penalty for guessing - that is, an incorrect question gives a score of 0.
+
+What is the expected value of the score when guessing on this new test?
+```{r}
+a2 <- 1
+b2 <- 0
+p2 <- 0.25
+mu2 <- a2*p2 + b2*(1-p2)
+mu2*44
+```
+
+Consider a range of correct answer probabilities p <- seq(0.25, 0.95, 0.05) representing a range of student skills.
+
+What is the lowest p such that the probability of scoring over 35 exceeds 80%?
+```{r}
+p <- seq(0.25, 0.95, 0.05)
+
+fu <- function(p){
+  # calculate the expected value at given p
+  expected_value <- 44 * (1*p + 0*(1-p))
+  # calculate the standard error at given p
+  standard_error <- sqrt(44) * abs(1 - 0) * sqrt(p*(1 - p))
+  # calculate likelihood of score of 35 or greater
+  1-pnorm(35, expected_value, standard_error)
+}
+
+exp_val <- sapply(p, FUN=fu)
+
+min(p[which(exp_val > 0.8)])
+```
+
+##Assesent Question 3
+
+A casino offers a House Special bet on roulette, which is a bet on five pockets (00, 0, 1, 2, 3) out of 38 total pockets. The bet pays out 6 to 1. In other words, a losing bet yields -$1 and a successful bet yields $6. A gambler wants to know the chance of losing money if he places 500 bets on the roulette House Special.
+
+The following 7-part question asks you to do some calculations related to this scenario.
